@@ -1,0 +1,44 @@
+// font
+// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+// base
+@import "./base/variables";
+@import "./base/mixins";
+@import "./base/fonts";
+@import "./base/zeroing";
+@import "./base/burger";
+
+// blocks
+@import "./blocks/header";
+@import "./blocks/footer";
+@import "./blocks/main";
+
+// global styles
+._container {
+  max-width: $width + px;
+  margin: 0 auto;
+  padding: 0px 20px;
+  // @media (max-width: $width + px){
+  //   max-width: 970px;
+  // }
+  // @media (max-width: 991.98px){
+  //   max-width: 750px;
+  // }
+  // @media (max-width: 767.98px){
+  //   max-width: none;
+  //   padding: 0px 10px;
+  // }
+}
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  flex: 1 1 auto;
+}
+
+// media
+@import "./base/media";
