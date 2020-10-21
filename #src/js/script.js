@@ -3,17 +3,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // @@include("swiper-bundle.min.js");
     // @@include("some.js");
     // @@include('burger.js');
-    const menuParents = document.querySelectorAll('.menu-page__parent');
-
-    menuParents.forEach((element,index) => {
-        const menuParent = menuParents[index];
-        menuParent.addEventListener('mouseenter', (e) => {
-            menuParent.classList.add('_active');
+    
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        const menuParents = document.querySelectorAll('.menu-page__parent > a');
+        menuParents.forEach((element,index) => {
+            element.addEventListener('click', (e) => {
+                e.preventDefault();
+                element.parentElement.classList.toggle('_active');
+            });
         });
-        menuParent.addEventListener('mouseleave', (e) => {
-            menuParent.classList.remove('_active');
-        });
-    });
+      } else {
+          const menuParents = document.querySelectorAll('.menu-page__parent');
+            menuParents.forEach((element,index) => {
+                const menuParent = menuParents[index];
+                menuParent.addEventListener('mouseenter', (e) => {
+                    menuParent.classList.add('_active');
+                });
+                menuParent.addEventListener('mouseleave', (e) => {
+                    menuParent.classList.remove('_active');
+                });
+            });          
+    }
+    
 
     const menuPageBurger = document.querySelector('.menu-page__burger');
     menuPageBurger.addEventListener('click', () => {
@@ -60,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         slidesPerView: 1,
         loop: true,
+        autoHeight: true,
         slideClass: 'mainslider__slide',
         pagination: {
           el: '.mainslider__dotts',
@@ -69,4 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
      
       })
 
+      if(document.querySelector('.mainslider')){
+          const mainsliderImages = document.querySelectorAll('.mainslider__image');
+          const mainsliderDotts = document.querySelectorAll('.mainslider__dotts .swiper-pagination-bullet');
+            
+          mainsliderImages.forEach((element,index) => {
+            mainsliderImage = element.querySelector('img').getAttribute('src');
+            mainsliderDotts[index].style.backgroundImage = `url("${mainsliderImage}")`;
+          });
+      }
 });

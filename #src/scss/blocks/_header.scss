@@ -1,4 +1,6 @@
 .header {
+	position: relative;
+	z-index: 100;
 	background: url('../img/bg_header.jpg') top repeat-x;
 	@media (max-width: 767px){
 		background: url('../img/bg_header.jpg') -50% -20px repeat-x;
@@ -74,6 +76,7 @@
 				opacity: 0;
 				visibility: hidden;
 				transition: all ease-in .3s;
+				
 				&_active{
 					opacity: 1;
 					visibility: visible;
@@ -243,7 +246,9 @@
 		}
 }
 .bottom-header {
-
+		@media (max-width: 640px){
+			height: 30px;
+		}
 		&__content {
 			height: 63px;
 			display: flex;
