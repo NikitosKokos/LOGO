@@ -255,28 +255,51 @@ ibg();
        
     });
     
-    //  slider main
-    const mainSlider = new Swiper('.mainslider__body', {
-        
-        slidesPerView: 1,
-        loop: true,
-        autoHeight: true,
-        slideClass: 'mainslider__slide',
-        pagination: {
-          el: '.mainslider__dotts',
-          clickable: true,
-        },
-      
-     
-      })
+    
 
-      if(document.querySelector('.mainslider')){
-          const mainsliderImages = document.querySelectorAll('.mainslider__image');
-          const mainsliderDotts = document.querySelectorAll('.mainslider__dotts .swiper-pagination-bullet');
+
+       //  slider products
+       if(document.querySelector('.products-slider')){
+        const productsSlider = new Swiper('.products-slider__item', {     
+                slidesPerView: 1,
+                simulateTouch:false,
+                // loop: true,
+                // autoHeight: true,
+                slideClass: 'products-slider__slide',
+                pagination: {
+                  el: '.products-slider__info',
+                  type: 'fraction'
+                },
+                navigation: {
+                    nextEl: '.products-slider__arrow_next',
+                    prevEl: '.products-slider__arrow_prev',
+                  },
+            })
+       }
+    
+    //  slider main
+        if(document.querySelector('.mainslider')){
+        const mainSlider = new Swiper('.mainslider__body', {
             
-          mainsliderImages.forEach((element,index) => {
-            mainsliderImage = element.querySelector('img').getAttribute('src');
-            mainsliderDotts[index].style.backgroundImage = `url("${mainsliderImage}")`;
-          });
-      }
+            slidesPerView: 1,
+            loop: true,
+            autoHeight: true,
+            slideClass: 'mainslider__slide',
+            pagination: {
+            el: '.mainslider__dotts',
+            clickable: true,
+            },
+        
+        
+        })
+
+        
+            const mainsliderImages = document.querySelectorAll('.mainslider__image');
+            const mainsliderDotts = document.querySelectorAll('.mainslider__dotts .swiper-pagination-bullet');
+                
+            mainsliderImages.forEach((element,index) => {
+                mainsliderImage = element.querySelector('img').getAttribute('src');
+                    mainsliderDotts[index].style.backgroundImage = `url("${mainsliderImage}")`;
+            });
+        }
 });
