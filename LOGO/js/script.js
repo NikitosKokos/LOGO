@@ -292,7 +292,45 @@ ibg();
         
         
         })
+            // logo slider
 
+                    if(document.querySelector('.brands-slider')){
+                        const brandsSlider = new Swiper('.brands-slider__body', {     
+                                slidesPerView: 5,
+                                // simulateTouch:false,
+                                loop: true,
+                                // autoHeight: true,
+                                slideClass: 'brands-slider__slide',
+                                // pagination: {
+                                //   el: '.products-slider__info',
+                                //   type: 'fraction'
+                                // },
+                                navigation: {
+                                    nextEl: '.brands-slider__arrow_next',
+                                    prevEl: '.brands-slider__arrow_prev',
+                                },
+                                breakpoints: {
+                                    // when window width is >= 320px
+                                    320: {
+                                      slidesPerView: 1
+                                    },
+                                    // when window width is >= 480px
+                                    480: {
+                                      slidesPerView: 2
+                                    },
+                                    600: {
+                                      slidesPerView: 3
+                                    },
+                                    // when window width is >= 640px
+                                    768: {
+                                      slidesPerView: 4
+                                    },
+                                     992: {
+                                      slidesPerView: 5
+                                    },
+                                  }
+                            })
+                    }
         
             const mainsliderImages = document.querySelectorAll('.mainslider__image');
             const mainsliderDotts = document.querySelectorAll('.mainslider__dotts .swiper-pagination-bullet');
