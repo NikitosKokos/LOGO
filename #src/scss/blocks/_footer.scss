@@ -109,6 +109,11 @@
         color: #333333;
         font-size: 14px;
         font-weight: 700;
+        @media (min-width: 992px){
+           &:hover{
+           text-decoration: underline;
+         }
+        }
     }
 
     &__delivery {

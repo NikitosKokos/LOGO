@@ -1,6 +1,7 @@
 .page {
 
     &__container {
+        margin: 0px auto 30px auto !important;
         @media (min-width: 992px){
            display: flex;
         }
@@ -569,6 +570,15 @@
        &:hover{
        background: #1ab9ce;
      }
+    }
+    &_grey{
+        background-color: #e6e6e6;
+        color: #666666;
+        @media (min-width: 992px){
+           &:hover{
+            background-color: #fff;
+         }
+        }
     }
 }
 

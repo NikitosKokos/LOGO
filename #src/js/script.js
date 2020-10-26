@@ -1,6 +1,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // @@include("swiper-bundle.min.js",{});
+    @@include("wNumb.min.js",{});
+    @@include("nouislider.js",{});
+    @@include("spoller.js",{});
     // @@include("some.js",{});
     // @@include('burger.js',{});
     
@@ -87,7 +90,34 @@ document.addEventListener('DOMContentLoaded', () => {
                   },
             })
        }
-    
+    // filter price
+            const sliderFilter = document.querySelector('.price-filter__slider');
+
+            noUiSlider.create(sliderFilter, {
+                start: [0, 100000],
+                connect: true,
+                tooltips: [wNumb({decimals: 0}), wNumb({decimals: 0})],
+                range: {
+                    'min': 0,
+                    'max': 200000
+                }
+            });
+            const priceStart = document.querySelector('.values-price-filter__input_start');
+            const priceEnd = document.querySelector('.values-price-filter__input_end');
+            priceStart.addEventListener('change', setPriceValues);
+            priceEnd.addEventListener('change', setPriceValues);
+
+            function setPriceValues() {
+                let priceStartValue;
+                let priceEndValue;
+                if(priceStart.value != ''){
+                    priceStartValue = priceStart.value;
+                }
+                if(priceEnd.value != ''){
+                    priceEndValue = priceEnd.value;
+                }
+                sliderFilter.noUiSlider.set([priceStartValue,priceEndValue]);
+            }
     //  slider main
         if(document.querySelector('.mainslider')){
         const mainSlider = new Swiper('.mainslider__body', {
@@ -105,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
             // logo slider
 
-                    if(document.querySelector('.brands-slider')){
+                if(document.querySelector('.brands-slider')){
                         const brandsSlider = new Swiper('.brands-slider__body', {     
                                 slidesPerView: 5,
                                 // simulateTouch:false,
@@ -141,8 +171,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                     },
                                   }
                             })
-                    }
+                }
+            
+
         
+            // image slider
             const mainsliderImages = document.querySelectorAll('.mainslider__image');
             const mainsliderDotts = document.querySelectorAll('.mainslider__dotts .swiper-pagination-bullet');
                 
