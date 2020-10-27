@@ -2691,6 +2691,36 @@ if(spoller.length != 0){
         });
     });
 };
+        const selectSingle = document.querySelectorAll('.__select');
+    const selectSingle_title = document.querySelectorAll('.__select__title');
+    
+
+if(selectSingle){
+    selectSingle.forEach((element,index) => {
+            // Toggle menu
+            selectSingle_title[index].addEventListener('click', () => {
+            if ('active' === element.getAttribute('data-state')) {
+                element.setAttribute('data-state', '');
+            } else {
+                element.setAttribute('data-state', 'active');
+            }
+            }); 
+            let selectSingle_labels = element.querySelectorAll('.__select__label');
+            // Close when click to option
+            for (let i = 0; i < selectSingle_labels.length; i++) {
+            selectSingle_labels[i].addEventListener('click', (evt) => {
+                selectSingle_title[index].textContent = evt.target.textContent;
+                element.setAttribute('data-state', '');
+            });
+            }
+        });
+}
+   
+   
+
+    
+
+;
     // // поддержка webp
 function testWebP(callback) {
   let webP = new Image();
@@ -2963,10 +2993,26 @@ ibg();
                   },
             })
        }
+    //   filter show
+    const mediaQuery = window.matchMedia("screen and (max-width: 992px)");
+    mediaQuery.addListener(mobileFilter);
+    mobileFilter(mediaQuery);
+
+    function mobileFilter(mq) {
+        const filterTitle = document.querySelector('.filter__title');
+        if(filterTitle){
+             filterTitle.addEventListener('click', () => {
+                filterTitle.classList.toggle('_active');
+                filterTitle.nextElementSibling.classList.toggle('_active');
+            });
+        }
+       
+    }
+
     // filter price
             const sliderFilter = document.querySelector('.price-filter__slider');
-
-            noUiSlider.create(sliderFilter, {
+            if(sliderFilter){
+              noUiSlider.create(sliderFilter, {
                 start: [0, 100000],
                 connect: true,
                 tooltips: [wNumb({decimals: 0}), wNumb({decimals: 0})],
@@ -2990,7 +3036,9 @@ ibg();
                     priceEndValue = priceEnd.value;
                 }
                 sliderFilter.noUiSlider.set([priceStartValue,priceEndValue]);
+            }  
             }
+            
     //  slider main
         if(document.querySelector('.mainslider')){
         const mainSlider = new Swiper('.mainslider__body', {

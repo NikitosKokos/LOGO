@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     @@include("wNumb.min.js",{});
     @@include("nouislider.js",{});
     @@include("spoller.js",{});
+    @@include("select.js",{});
     // @@include("some.js",{});
     // @@include('burger.js',{});
     
@@ -90,10 +91,26 @@ document.addEventListener('DOMContentLoaded', () => {
                   },
             })
        }
+    //   filter show
+    const mediaQuery = window.matchMedia("screen and (max-width: 992px)");
+    mediaQuery.addListener(mobileFilter);
+    mobileFilter(mediaQuery);
+
+    function mobileFilter(mq) {
+        const filterTitle = document.querySelector('.filter__title');
+        if(filterTitle){
+             filterTitle.addEventListener('click', () => {
+                filterTitle.classList.toggle('_active');
+                filterTitle.nextElementSibling.classList.toggle('_active');
+            });
+        }
+       
+    }
+
     // filter price
             const sliderFilter = document.querySelector('.price-filter__slider');
-
-            noUiSlider.create(sliderFilter, {
+            if(sliderFilter){
+              noUiSlider.create(sliderFilter, {
                 start: [0, 100000],
                 connect: true,
                 tooltips: [wNumb({decimals: 0}), wNumb({decimals: 0})],
@@ -117,7 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     priceEndValue = priceEnd.value;
                 }
                 sliderFilter.noUiSlider.set([priceStartValue,priceEndValue]);
+            }  
             }
+            
     //  slider main
         if(document.querySelector('.mainslider')){
         const mainSlider = new Swiper('.mainslider__body', {

@@ -1080,7 +1080,19 @@ text-transform: uppercase;
     &__body {
         flex: 1 1 auto;
     }
-
+    &__compare{
+        background: url('../img/icons/compare.png') left no-repeat;
+        padding: 0px 0px 0px 33px;
+        display: inline-block;
+        margin: 25px 0px 0px 0px;
+        span{
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 300;
+            border-bottom: 1px dashed;
+            line-height: 21px;
+        }
+    }
     &__cart {
         background: url('../img/icons/cart.png') center no-repeat,#fd8424;
         border-radius: 50%;
@@ -1093,6 +1105,9 @@ text-transform: uppercase;
            &:hover{
             background: url('../img/icons/cart.png') center no-repeat,#1ab9ce;
          }
+        }
+        &_catalog{
+            margin: 0px 0px 0px 0px;
         }
     }
 
@@ -1112,7 +1127,9 @@ text-transform: uppercase;
         text-align: right;
         text-decoration: line-through;
         margin: 0px 0px 10px 0px;
-        
+        &_catalog{
+            margin: 0px 0px -10px 0px;
+        }
     }
 
     &__price {
