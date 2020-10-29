@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     @@include("nouislider.js",{});
     @@include("spoller.js",{});
     @@include("select.js",{});
+    @@include("tabs.js",{});
     // @@include("some.js",{});
     // @@include('burger.js',{});
     
@@ -70,8 +71,24 @@ document.addEventListener('DOMContentLoaded', () => {
        
     });
     
-    
-
+    // quantity
+    const quantityButtons = document.querySelectorAll('.quantity__button');
+    if(quantityButtons.length > 0 ){
+        quantityButtons.forEach(element => {
+            element.addEventListener('click', () => {
+                let value = parseInt(element.closest('.quantity').querySelector('input').value);
+                if(element.classList.contains('quantity__button_plus')){
+                    value++;
+                }else{
+                    value--;
+                    if(value < 1){
+                        value = 1 ;
+                    }
+                }
+                element.closest('.quantity').querySelector('input').value = value;
+            });
+        });
+    }
 
        //  slider products
        if(document.querySelector('.products-slider')){
@@ -136,7 +153,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 sliderFilter.noUiSlider.set([priceStartValue,priceEndValue]);
             }  
             }
-            
+     // product slider
+
+        if(document.querySelector('.images-product')){
+            const imagesSubSlider = new Swiper('.images-product__subslider', {     
+                    slidesPerView: 4,
+                    // simulateTouch:false,
+                    // loop: true,
+                    // autoHeight: true,
+                    slideClass: 'images-product__subslide',
+                }); 
+            const imagesMainSlider = new Swiper('.images-product__mainslider', {     
+                    slidesPerView: 1,
+                    // simulateTouch:false,
+                    // loop: true,
+                    // autoHeight: true,
+                    slideClass: 'images-product__mainslide',
+                    thumbs: {
+                        swiper: imagesSubSlider,
+                    },
+                });
+               
+            }        
     //  slider main
         if(document.querySelector('.mainslider')){
         const mainSlider = new Swiper('.mainslider__body', {
@@ -152,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         
         })
+       
             // logo slider
 
                 if(document.querySelector('.brands-slider')){

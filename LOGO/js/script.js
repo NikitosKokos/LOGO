@@ -2721,6 +2721,47 @@ if(selectSingle){
     
 
 ;
+     //  tabs
+let tabsParent = document.querySelectorAll('._tabs');
+if(tabsParent.length > 0){
+    tabsParent.forEach(element => {
+        let tabs = element.querySelectorAll('._tabs-item'),
+        tabsContent = element.querySelectorAll('._tab-block');
+
+        function hideTabsContent(){
+        tabsContent.forEach(item => {
+            item.classList.remove('_active');
+        });
+
+        tabs.forEach(item => {
+            item.classList.remove('_active');
+        });
+        };
+
+        let showTabsContent = function (i = 0){
+            tabsContent[i].classList.add('_active');
+            tabs[i].classList.add('_active');
+        }
+
+        hideTabsContent();
+        showTabsContent(0);
+
+        element.addEventListener('click', (event) => {
+        const targetElement = event.target;
+        
+        if( targetElement && targetElement.classList.contains('_tabs-item') || targetElement && targetElement.closest('._tabs-item')){
+            hideTabsContent();
+            
+            tabs.forEach((item, i)=>{
+                if(targetElement.closest('._tabs-item') == item){
+                    showTabsContent(i);
+                }
+                });
+        }
+        });
+    });
+}
+ ;
     // // поддержка webp
 function testWebP(callback) {
   let webP = new Image();
@@ -2972,8 +3013,24 @@ ibg();
        
     });
     
-    
-
+    // quantity
+    const quantityButtons = document.querySelectorAll('.quantity__button');
+    if(quantityButtons.length > 0 ){
+        quantityButtons.forEach(element => {
+            element.addEventListener('click', () => {
+                let value = parseInt(element.closest('.quantity').querySelector('input').value);
+                if(element.classList.contains('quantity__button_plus')){
+                    value++;
+                }else{
+                    value--;
+                    if(value < 1){
+                        value = 1 ;
+                    }
+                }
+                element.closest('.quantity').querySelector('input').value = value;
+            });
+        });
+    }
 
        //  slider products
        if(document.querySelector('.products-slider')){
@@ -3038,7 +3095,28 @@ ibg();
                 sliderFilter.noUiSlider.set([priceStartValue,priceEndValue]);
             }  
             }
-            
+     // product slider
+
+        if(document.querySelector('.images-product')){
+            const imagesSubSlider = new Swiper('.images-product__subslider', {     
+                    slidesPerView: 4,
+                    // simulateTouch:false,
+                    // loop: true,
+                    // autoHeight: true,
+                    slideClass: 'images-product__subslide',
+                }); 
+            const imagesMainSlider = new Swiper('.images-product__mainslider', {     
+                    slidesPerView: 1,
+                    // simulateTouch:false,
+                    // loop: true,
+                    // autoHeight: true,
+                    slideClass: 'images-product__mainslide',
+                    thumbs: {
+                        swiper: imagesSubSlider,
+                    },
+                });
+               
+            }        
     //  slider main
         if(document.querySelector('.mainslider')){
         const mainSlider = new Swiper('.mainslider__body', {
@@ -3054,6 +3132,7 @@ ibg();
         
         
         })
+       
             // logo slider
 
                 if(document.querySelector('.brands-slider')){
